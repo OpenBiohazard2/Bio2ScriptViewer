@@ -1,5 +1,9 @@
 # Resident Evil 2 Script Viewer
 
+<div style="display:inline-block;">
+<img src="https://github.com/samuelyuan/Bio2ScriptViewer/raw/master/screenshots/ScriptViewer.png" alt="ScriptViewer" width="400" height="300" />
+</div>
+
 ## About
 
 You can view the script files in the original Resident Evil 2 / Biohazard 2 as pseudocode next to the original bytecode. Every function is placed in a separate file to make it easier to switch between functions.
