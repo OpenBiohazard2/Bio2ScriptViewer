@@ -11,7 +11,7 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/storage"
 
-	"github.com/samuelyuan/Bio2ScriptViewer/fileio"
+	"github.com/OpenBiohazard2/Bio2ScriptViewer/fileio"
 )
 
 func (a *App) openFileDialog() {

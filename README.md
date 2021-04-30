@@ -1,7 +1,7 @@
 # Resident Evil 2 Script Viewer
 
 <div style="display:inline-block;">
-<img src="https://github.com/samuelyuan/Bio2ScriptViewer/raw/master/screenshots/ScriptViewer.png" alt="ScriptViewer" width="400" height="300" />
+<img src="https://github.com/OpenBiohazard2/Bio2ScriptViewer/raw/master/screenshots/ScriptViewer.png" alt="ScriptViewer" width="400" height="300" />
 </div>
 
 ## About

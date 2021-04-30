@@ -1,4 +1,4 @@
-module github.com/samuelyuan/Bio2ScriptViewer
+module github.com/OpenBiohazard2/Bio2ScriptViewer
 
 go 1.15
 
