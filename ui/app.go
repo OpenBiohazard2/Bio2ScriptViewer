@@ -1,9 +1,10 @@
-package main
+package ui
 
 import (
 	"runtime"
 
 	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/driver/desktop"
@@ -11,6 +12,38 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
+
+// App represents the whole application with all its windows, widgets and functions
+type App struct {
+	app     fyne.App
+	mainWin fyne.Window
+
+	mainModKey desktop.Modifier
+
+	split               *container.Split
+	rawScriptData       *widget.Entry
+	convertedScriptCode *widget.Entry
+
+	fileListBar *widget.List
+	statusBar   *fyne.Container
+
+	fullscreenWin fyne.Window
+}
+
+func (a *App) init() {
+	// theme
+	switch a.app.Preferences().StringWithFallback("Theme", "Dark") {
+	case "Light":
+		a.app.Settings().SetTheme(theme.LightTheme())
+	case "Dark":
+		a.app.Settings().SetTheme(theme.DarkTheme())
+	}
+
+	// show/hide statusbar
+	if a.app.Preferences().BoolWithFallback("statusBarVisible", true) == false {
+		a.statusBar.Hide()
+	}
+}
 
 func (a *App) loadStatusBar() *fyne.Container {
 	a.statusBar = container.NewVBox(
@@ -99,4 +132,14 @@ func (a *App) loadMainUI() fyne.CanvasObject {
 	a.split.SetOffset(0.50)
 	layout := container.NewBorder(nil, a.loadStatusBar(), a.loadFileList([]string{}, nil), nil, a.split)
 	return layout
+}
+
+func RunApp() {
+	curApp := app.NewWithID("bio2-scd-viewer")
+	mainWindow := curApp.NewWindow("Biohazard 2 Script Viewer")
+	userInterface := &App{app: curApp, mainWin: mainWindow}
+	userInterface.init()
+	mainWindow.SetContent(userInterface.loadMainUI())
+	mainWindow.Resize(fyne.NewSize(1200, 750))
+	mainWindow.ShowAndRun()
 }
