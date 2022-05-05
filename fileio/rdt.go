@@ -48,8 +48,8 @@ type RDTOffsets struct {
 }
 
 type RDTOutput struct {
-	InitScriptData   *SCDOutput
-	RoomScriptData   *SCDOutput
+	InitScriptData *SCDOutput
+	RoomScriptData *SCDOutput
 }
 
 func LoadRDTFile(filename string) (*RDTOutput, error) {
@@ -102,8 +102,8 @@ func LoadRDT(r io.ReaderAt, fileLength int64) (*RDTOutput, error) {
 	}
 
 	output := &RDTOutput{
-		InitScriptData:   initSCDOutput,
-		RoomScriptData:   roomSCDOutput,
+		InitScriptData: initSCDOutput,
+		RoomScriptData: roomSCDOutput,
 	}
 	return output, nil
 }

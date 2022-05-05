@@ -328,6 +328,171 @@ var (
 	}
 )
 
+type ScriptInstrGoSub struct {
+	Opcode uint8 // 0x18
+	Event  uint8
+}
+
+type ScriptInstrCheckBitTest struct {
+	Opcode    uint8 // 0x21
+	BitArray  uint8 // Index of array of bits to use
+	BitNumber uint8 // Bit number to check
+	Value     uint8 // Value to compare (0 or 1)
+}
+
+type ScriptInstrSetBit struct {
+	Opcode    uint8 // 0x22
+	BitArray  uint8 // Index of array of bits to use
+	BitNumber uint8 // Bit number to check
+	Operation uint8 // 0x0: clear, 0x1: set, 0x2-0x6: invalid, 0x7: flip bit
+}
+
+type ScriptInstrCutChg struct {
+	Opcode   uint8 // 0x29
+	CameraId uint8
+}
+
+type ScriptInstrAotSet struct {
+	Opcode       uint8 // 0x2c
+	Aot          uint8
+	Id           uint8
+	Type         uint8
+	Floor        uint8
+	Super        uint8
+	X, Z         int16
+	Width, Depth int16
+	Data         [6]uint8
+}
+
+type ScriptInstrObjModelSet struct {
+	Opcode      uint8 // 0x2d
+	ObjectIndex uint8
+	ObjectId    uint8
+	Counter     uint8
+	Wait        uint8
+	Num         uint8
+	Floor       uint8
+	Flag0       uint8
+	Type        uint16
+	Flag1       uint16
+	Attribute   int16
+	Position    [3]int16
+	Direction   [3]int16
+	Offset      [3]int16
+	Dimensions  [3]uint16
+}
+
+type ScriptInstrPosSet struct {
+	Opcode uint8 // 0x32
+	Dummy  uint8
+	X      int16
+	Y      int16
+	Z      int16
+}
+
+type ScriptInstrSceEsprOn struct {
+	Opcode   uint8 // 0x3a
+	Dummy    uint8
+	Id       uint8
+	Type     uint8
+	Work     uint16
+	Unknown1 int16
+	X, Y, Z  int16
+	DirY     uint16
+}
+
+type ScriptInstrDoorAotSet struct {
+	Opcode                       uint8 // 0x3b
+	Aot                          uint8 // Index of item in array of room objects list
+	Id                           uint8
+	Type                         uint8
+	Floor                        uint8
+	Super                        uint8
+	X, Z                         int16 // Location of door
+	Width, Depth                 int16 // Size of door
+	NextX, NextY, NextZ, NextDir int16 // Position and direction of player after door entered
+	Stage, Room, Camera          uint8 // Stage, room, camera after door entered
+	NextFloor                    uint8
+	TextureType                  uint8
+	DoorType                     uint8
+	KnockType                    uint8
+	KeyId                        uint8
+	KeyType                      uint8
+	Free                         uint8
+}
+
+type ScriptInstrPlcNeck struct {
+	Opcode    uint8 // 0x41
+	Operation uint8
+	NeckX     int16
+	NeckY     int16
+	NeckZ     int16
+	Unknown   [2]int8
+}
+
+type ScriptInstrSceEmSet struct {
+	Opcode    uint8 // 0x44
+	Dummy     uint8
+	Aot       uint8
+	Id        uint8
+	Type      uint8
+	Status    uint8
+	Floor     uint8
+	SoundFlag uint8
+	ModelType uint8
+	EmSetFlag int8
+	X, Y, Z   int16
+	DirY      uint16
+	Motion    uint16
+	CtrFlag   uint16
+}
+
+type ScriptInstrAotReset struct {
+	Opcode uint8 // 0x46
+	Aot    uint8
+	Id     uint8
+	Type   uint8
+	Data   [6]uint8
+}
+
+type ScriptInstrItemAotSet struct {
+	Opcode          uint8 // 0x4e
+	Aot             uint8
+	Id              uint8
+	Type            uint8
+	Floor           uint8
+	Super           uint8
+	X, Z            int16
+	Width, Depth    int16
+	ItemId          uint16
+	Amount          uint16
+	ItemPickedIndex uint16 // flag to check if item is picked up
+	Md1ModelId      uint8
+	Act             uint8
+}
+
+type ScriptInstrSceBgmControl struct {
+	Opcode      uint8 // 0x51
+	Id          uint8 // 0: Main, 1: sub0, 2: sub1
+	Operation   uint8 // 0: nop, 1: start, 2: stop, 3: restart, 4: pause, 5: fadeout
+	Type        uint8 // 0: MAIN_VOL, 1: PROG0_VOL, 2: PROG1_VOL, 3: PROG2_VOL
+	LeftVolume  uint8
+	RightVolume uint8
+}
+
+type ScriptInstrAotSet4p struct {
+	Opcode uint8 // 0x67
+	Aot    uint8
+	Id     uint8
+	Type   uint8
+	Floor  uint8
+	Super  uint8
+	X1, Z1 int16
+	X2, Z2 int16
+	X3, Z3 int16
+	X4, Z4 int16
+	Data   [6]uint8
+}
 
 type SCDOutput struct {
 	ScriptData ScriptFunction
